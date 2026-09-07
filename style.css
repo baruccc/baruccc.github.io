@@ -1,0 +1,114 @@
+body {
+    background-color: #050505;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.bio-card {
+    background: #0a0a0a;
+    border: 2px solid #ff003c;
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 5px 0;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+}
+
+.subtitle {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.clock-container {
+    background: #121212;
+    border: 1px solid #ff003c55;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-family: monospace;
+    color: #ff3366;
+    box-shadow: inset 0 0 10px rgba(255, 0, 60, 0.2);
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.links a {
+    color: #ffffff;
+    background: #1a0005;
+    border: 1px solid #ff003c;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.links a:hover {
+    background: #ff003c;
+    box-shadow: 0 0 12px #ff003c;
+}
+
+.void-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.void-form h2 {
+    font-size: 1.1rem;
+    color: #ff003c;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.void-form input, 
+.void-form textarea {
+    background: #121212;
+    border: 1px solid #33000f;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.void-form input:focus, 
+.void-form textarea:focus {
+    border-color: #ff003c;
+    box-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
+}
+
+.void-form button {
+    background: #ff003c;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.void-form button:hover {
+    background: #ff3366;
+    box-shadow: 0 0 15px #ff003c;
+}

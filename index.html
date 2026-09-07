@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baruc | Bio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bio-card">
+        <h1>Baruc</h1>
+        <p class="subtitle">Hola</p>
+        
+        <div class="clock-container">
+            <span>Hora local: </span><span id="live-clock">Cargando...</span>
+        </div>
+
+        <div class="links">
+            <a href="https://instagram.com/@8.r.c_" target="_blank">Instagram</a>
+            <a href="https://www.baruc.me/gallery" target="_blank">Gallery</a>
+        </div>
+
+        <form action="https://formspree.io/f/moeqngra" method="POST" class="void-form">
+            <h2>Contacto Directo</h2>
+            <input type="text" name="name" placeholder="Tu Nombre" required>
+            <input type="text" name="contact" placeholder="Teléfono / Red Social" required>
+            <textarea name="message" placeholder="Tu mensaje..." rows="4" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </div>
+
+    <script>
+        function updateClock() {
+            const options = { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const timeString = new Date().toLocaleTimeString('es-MX', options);
+            document.getElementById('live-clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
