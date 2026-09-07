@@ -1,1 +1,70 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería | Void View</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .gallery-container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .grid-item {
+            background: #0a0a0a;
+            border: 1px solid #33000f;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .grid-item:hover {
+            border-color: #ff003c;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+            transform: translateY(-3px);
+        }
+        .grid-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ff003c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+        }
+    </style>
+</head>
+<body style="display: block; padding: 40px 0;">
+    <div class="gallery-container" style="margin: 0 auto;">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+        <h1>Galería</h1>
+        <p class="subtitle">Capturas y momentos en el espectro visual.</p>
+        
+        <div class="grid">
+            <!-- Ejemplo de imagen 1 -->
+            <div class="grid-item">
+                <img src="imagen1.jpg" alt="Foto 1">
+            </div>
+            <!-- Ejemplo de imagen 2 -->
+            <div class="grid-item">
+                <img src="imagen2.jpg" alt="Foto 2">
+            </div>
+            <!-- Añade más .grid-item según necesites -->
+        </div>
+    </div>
+</body>
+</html>
