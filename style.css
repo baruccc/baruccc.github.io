@@ -112,3 +112,19 @@ h1 {
     background: #ff3366;
     box-shadow: 0 0 15px #ff003c;
 }
+
+.error-card {
+    border-color: #ff003c;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.6);
+}
+
+.error-card h1 {
+    font-size: 4rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.error-desc {
+    color: #ff3366;
+    margin-bottom: 30px;
+}
