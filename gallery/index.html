@@ -57,7 +57,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -65,9 +65,15 @@
         .lightbox.active {
             display: flex;
         }
-        .lightbox-content {
+        .lightbox-container-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             max-width: 90%;
-            max-height: 80vh;
+        }
+        .lightbox-content {
+            max-width: 100%;
+            max-height: 70vh;
             border-radius: 8px;
             box-shadow: 0 0 25px rgba(255, 0, 60, 0.6);
             transition: transform 0.3s ease;
@@ -77,6 +83,14 @@
         .lightbox-content.zoomed {
             transform: scale(2);
             cursor: zoom-out;
+        }
+        .lightbox-caption {
+            color: #ffffff;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
         }
         .lightbox-close {
             position: absolute;
@@ -118,11 +132,11 @@
         <p class="subtitle">Capturas y momentos de mi vida.</p>
         
         <div class="grid">
-            <!-- Ejemplo de imagen 1 -->
+            <!-- Imagen 1 -->
             <div class="grid-item">
                 <img src="entrenamiento1.jpg" alt="Entrenamiento 05/09/2026">
             </div>
-            <!-- Ejemplo de imagen 2 -->
+            <!-- Imagen 2 -->
             <div class="grid-item">
                 <img src="imagen2.jpg" alt="Aqui me falta una aventura...">
             </div>
@@ -133,37 +147,47 @@
     <div id="lightbox" class="lightbox">
         <button class="lightbox-close" id="closeBtn">&times;</button>
         <button class="lightbox-nav" id="prevBtn">&#10094;</button>
-        <img class="lightbox-content" id="lightboxImg" alt="Ampliada">
+        <div class="lightbox-container-inner">
+            <img class="lightbox-content" id="lightboxImg" alt="Ampliada">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
         <button class="lightbox-nav" id="nextBtn">&#10095;</button>
     </div>
 
     <script>
-        const gridItems = document.querySelectorAll('.grid-item img');
+        const gridItems = document.querySelectorAll('.grid-item');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
         const closeBtn = document.getElementById('closeBtn');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
         let currentIndex = 0;
-        const imagesSrc = Array.from(gridItems).map(img => img.src);
+        const galleryData = Array.from(gridItems).map(item => {
+            const img = item.querySelector('img');
+            return {
+                src: img.src,
+                alt: img.alt || 'Sin descripción'
+            };
+        });
 
         function updateLightbox() {
-            lightboxImg.src = imagesSrc[currentIndex];
+            lightboxImg.src = galleryData[currentIndex].src;
+            lightboxCaption.textContent = galleryData[currentIndex].alt;
             lightboxImg.classList.remove('zoomed');
             
-            // Ocultar o mostrar flechas dinámicamente si no hay más fotos
-            if (imagesSrc.length <= 1) {
+            if (galleryData.length <= 1) {
                 prevBtn.classList.add('hidden');
                 nextBtn.classList.add('hidden');
             } else {
                 prevBtn.classList.toggle('hidden', currentIndex === 0);
-                nextBtn.classList.toggle('hidden', currentIndex === imagesSrc.length - 1);
+                nextBtn.classList.toggle('hidden', currentIndex === galleryData.length - 1);
             }
         }
 
-        gridItems.forEach((img, index) => {
-            img.addEventListener('click', () => {
+        gridItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
                 currentIndex = index;
                 updateLightbox();
                 lightbox.classList.add('active');
@@ -172,7 +196,6 @@
 
         closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
         
-        // Cerrar si haces click fuera de la imagen
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) lightbox.classList.remove('active');
         });
@@ -185,13 +208,12 @@
         });
 
         nextBtn.addEventListener('click', () => {
-            if (currentIndex < imagesSrc.length - 1) {
+            if (currentIndex < galleryData.length - 1) {
                 currentIndex++;
                 updateLightbox();
             }
         });
 
-        // Zoom táctil / clic en la imagen
         lightboxImg.addEventListener('click', () => {
             lightboxImg.classList.toggle('zoomed');
         });
